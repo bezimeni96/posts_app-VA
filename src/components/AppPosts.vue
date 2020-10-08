@@ -1,10 +1,8 @@
 <template>
     <div>
-        <h1>Posts:</h1>
-        <br>
         <div class="posts-section">
             <section v-for="post in postsList" :key="post.id">
-                <h2>{{ post.title }}</h2>
+                <h2>      <router-link :to="{ name:'single-post', params: {id: post.id} }">{{ post.title }}</router-link></h2>
                 <br>
                 <p>{{ post.text }}</p>
                 <hr>
