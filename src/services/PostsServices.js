@@ -6,11 +6,15 @@ export default class PostsServices {
     }
 
     getAll() {
-        return axios.get('/posts')
+        return axios.get('/posts');
     }
 
     get(id) {
-        return axios.get(`/posts/${id}`)
+        return axios.get(`/posts/${id}`);
+    }
+
+    add(post) {
+        return axios.post('/posts', post);
     }
 }
 

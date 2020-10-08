@@ -1,0 +1,53 @@
+<template>
+    <div class="main">
+        <h2>Add new post</h2>
+        <br>
+        <form @submit.prevent="addPost" class="postForm form-group">
+            <label for="postTitle">Title:</label>
+            <input class="form-control" type="text" name="postTitle" id="postTitle" v-model="post.title" placeholder="Add post title.."> <br>
+            <label for="postText">Content:</label>
+            <textarea class="form-control" name="postText" id="postText" cols="30" rows="10" v-model="post.text" placeholder="Add post content.."></textarea> <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</template>
+
+<script>
+// import { postsServices } from '../services/PostsServices';
+
+export default {
+    name: "AddPost",
+
+    data() {
+        return {
+            post: {
+                title: '',
+                text: '',
+            }
+        }
+    }
+}
+</script>
+
+<style scoped>
+.main {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.postForm {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    
+}
+
+.btn {
+    width: 20%;
+}
+
+</style>

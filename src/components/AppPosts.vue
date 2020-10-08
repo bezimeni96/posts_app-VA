@@ -1,11 +1,10 @@
 <template>
-    <div>
-        <div class="posts-section">
-            <section v-for="post in postsList" :key="post.id">
-                <h2>      <router-link :to="{ name:'single-post', params: {id: post.id} }">{{ post.title }}</router-link></h2>
+    <div class="main">
+        <div >
+            <section v-for="post in postsList" :key="post.id"  class="card card-body">
+                <h2 class="card-title"><router-link :to="{ name:'single-post', params: {id: post.id} }">{{ post.title }}</router-link></h2>
                 <br>
-                <p>{{ post.text }}</p>
-                <hr>
+                <p class="card-text">{{ post.text }}</p>
             </section>
         </div>
     </div>
@@ -31,7 +30,7 @@ export default {
 </script>
 
 <style scoped>
-.posts-section {
+.main {
     width: 80%;
     margin-left: auto;
     margin-right: auto;

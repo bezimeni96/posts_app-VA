@@ -1,9 +1,9 @@
 <template>
     <div class="main">
         <h1>{{ post.title }}</h1>
-        <br>
-        <br>
+        <br> <br>
         <p>{{ post.text }}</p>
+        <hr>
     </div>
 </template>
 
