@@ -85,7 +85,7 @@ export default {
 }
 
 .btn {
-    width: 20%;
+    width: 120px;
     margin-right: 15px;
 }
 

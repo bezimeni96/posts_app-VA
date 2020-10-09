@@ -7,6 +7,7 @@
                 <div>
                     <router-link :to="{ name: 'edit-post', params: { id: post.id}}"><button class="btn btn-secondary">Edit</button></router-link>
                     <button type="button" class="btn btn-primary" @click="deletePost(post.id)">Delete</button>
+                    <span>Comments ( {{ post.comments.length }} )</span>
                 </div>
             </section>
         </div>
@@ -28,13 +29,19 @@ export default {
     methods: {
         deletePost(postId) {
             postsServices.delete(postId).then( () =>
-                this.$router.go('/posts'));
+                this.createdPage());
+        },
+
+        async createdPage() {
+            const response = await postsServices.getAll();
+            this.postsList = response.data;
         }
+
+        
     },
 
-    async created() {
-        const response = await postsServices.getAll();
-        this.postsList = response.data;
+    created() {
+        this.createdPage();
     }
 }
 </script>
