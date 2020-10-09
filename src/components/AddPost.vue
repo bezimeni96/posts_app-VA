@@ -1,8 +1,8 @@
 <template>
     <div class="main">
-        <h2>Add new post</h2>
+        <h2>{{ (post.id ? "Edit post" : "Add new post")}}</h2>
         <br>
-        <form @submit.prevent="addPost" class="postForm form-group">
+        <form @submit.prevent="submitForm" class="postForm form-group">
             <label for="postTitle">Title:</label>
             <input class="form-control" type="text" name="postTitle" id="postTitle" v-model="post.title" placeholder="Add post title.." required minlength="2"> <br>
             <label for="postText">Content:</label>
@@ -33,11 +33,35 @@ export default {
     methods: {
         addPost() {
             postsServices.add(this.post).then( () =>
-                this.$router.push('/posts'))
+                this.redirectTo('/posts'))
         },
 
         resetForm() {
             this.post = {};
+        },
+
+        submitForm() {
+            if (this.post.id) {
+                this.editPost();
+            } else {
+                this.addPost();
+            }
+        },
+
+        editPost() {
+            postsServices.edit(this.post).then( () =>
+                this.redirectTo('/posts'))
+        },
+
+        redirectTo(address) {
+            return this.$router.push(address)
+        }
+    },
+
+    async created() {
+        if (this.$route.params.id) {
+            const response = await postsServices.get(this.$route.params.id);
+            this.post = response.data;
         }
     }
 }
