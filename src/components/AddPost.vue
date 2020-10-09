@@ -4,16 +4,16 @@
         <br>
         <form @submit.prevent="addPost" class="postForm form-group">
             <label for="postTitle">Title:</label>
-            <input class="form-control" type="text" name="postTitle" id="postTitle" v-model="post.title" placeholder="Add post title.."> <br>
+            <input class="form-control" type="text" name="postTitle" id="postTitle" v-model="post.title" placeholder="Add post title.." required> <br>
             <label for="postText">Content:</label>
-            <textarea class="form-control" name="postText" id="postText" cols="30" rows="10" v-model="post.text" placeholder="Add post content.."></textarea> <br>
+            <textarea class="form-control" name="postText" id="postText" cols="30" rows="10" v-model="post.text" placeholder="Add post content.." required></textarea> <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </template>
 
 <script>
-// import { postsServices } from '../services/PostsServices';
+import { postsServices } from '../services/PostsServices';
 
 export default {
     name: "AddPost",
@@ -24,6 +24,13 @@ export default {
                 title: '',
                 text: '',
             }
+        }
+    },
+
+    methods: {
+        addPost() {
+            postsServices.add(this.post).then( () =>
+                this.$router.push('/posts'))
         }
     }
 }
