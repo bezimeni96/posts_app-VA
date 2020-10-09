@@ -2,7 +2,8 @@
     <div class="main">
         <div >
             <section v-for="post in postsList" :key="post.id"  class="card card-body">
-                <h2 class="card-title"><router-link :to="{ name:'single-post', params: {id: post.id} }">{{ post.title }}</router-link></h2> <br>
+                <h2 class="card-title"><router-link :to="{ name:'single-post', params: {id: post.id} }">{{ post.title }}</router-link></h2>
+                <span>{{ post.createdAt | diffForHumans}}</span> <br>
                 <p class="card-text">{{ post.text }}</p> <br>
                 <div>
                     <router-link :to="{ name: 'edit-post', params: { id: post.id}}"><button class="btn btn-secondary">Edit</button></router-link>
@@ -16,9 +17,12 @@
 
 <script>
 import { postsServices } from '../services/PostsServices';
+import { dateMixin } from '../mixins/mixins';
 
 export default {
     name: "AppPosts",
+
+    mixins: [dateMixin],
     
     data() {
         return {

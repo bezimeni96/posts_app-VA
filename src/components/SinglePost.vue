@@ -1,14 +1,17 @@
 <template>
     <div class="main">
         <h1>{{ post.title }}</h1>
+        <small>Created: {{ post.createdAt | formatDate('DD.MM.YYYY.') }}</small>
         <br> <br>
         <p>{{ post.text }}</p>
         <hr>
         <add-comment @createdComment="addComment">
         </add-comment>
-        <div>
-            <div class="list-group" v-for="comment in post.comments" :key="comment.id">
+        <div class="list-group">
+            <div  class="d-flex w-100 justify-content-between" v-for="comment in post.comments" :key="comment.id">
                 <p class="mb-1">{{ comment.text }}</p>
+                <small class="createdAt">Commented {{ comment.createdAt | diffForHumans }} </small>
+                <hr>
             </div>
         </div>
     </div>
@@ -17,11 +20,13 @@
 <script>
 import { postsServices } from '../services/PostsServices';
 import AddComment from './AddComment.vue';
+import { dateMixin } from '../mixins/mixins'
 
 export default {
     name: "SinglePost",
 
     components: { AddComment },
+    mixins: [dateMixin],
 
     data() {
         return {
@@ -55,5 +60,9 @@ export default {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.createdAt {
+    margin-left: 20px;
 }
 </style>
