@@ -7,7 +7,10 @@
             <input class="form-control" type="text" name="postTitle" id="postTitle" v-model="post.title" placeholder="Add post title.." required> <br>
             <label for="postText">Content:</label>
             <textarea class="form-control" name="postText" id="postText" cols="30" rows="10" v-model="post.text" placeholder="Add post content.." required></textarea> <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-warning" @click="resetForm">Reset</button>
+            </div>
         </form>
     </div>
 </template>
@@ -31,6 +34,10 @@ export default {
         addPost() {
             postsServices.add(this.post).then( () =>
                 this.$router.push('/posts'))
+        },
+
+        resetForm() {
+            this.post = {};
         }
     }
 }
@@ -55,6 +62,7 @@ export default {
 
 .btn {
     width: 20%;
+    margin-right: 15px;
 }
 
 </style>
