@@ -4,9 +4,9 @@
         <br>
         <form @submit.prevent="addPost" class="postForm form-group">
             <label for="postTitle">Title:</label>
-            <input class="form-control" type="text" name="postTitle" id="postTitle" v-model="post.title" placeholder="Add post title.." required> <br>
+            <input class="form-control" type="text" name="postTitle" id="postTitle" v-model="post.title" placeholder="Add post title.." required minlength="2"> <br>
             <label for="postText">Content:</label>
-            <textarea class="form-control" name="postText" id="postText" cols="30" rows="10" v-model="post.text" placeholder="Add post content.." required></textarea> <br>
+            <textarea class="form-control" name="postText" id="postText" cols="30" rows="10" v-model="post.text" placeholder="Add post content.." required maxlength="300"></textarea> <br>
             <div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-warning" @click="resetForm">Reset</button>
